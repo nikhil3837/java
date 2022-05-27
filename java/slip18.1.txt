@@ -1,0 +1,72 @@
+<%@ page language="java" session="true"%>
+<html>
+<body>
+<form method="post" action="Page1.jsp">
+  Pen:price:5
+  Enter qty:<input type="text" name"t1"><br>
+  Pencil:price:15
+  Enter qty:<input type="text" name="t2"><br>
+  <input type="submit" value="ok">
+</form>
+</body>
+</html>
+<%
+String s1=request.getParameter("t1");  
+String s2=request.getParameter("t2"); 
+if(s1!=null&&s2!=null)
+{
+  int q1=Integer.parseInt(s1);
+  int q2=Integer.parseInt(s2);
+  int ans=q1*5+q2*15;
+  out.println("Page 1 Total="+ans);
+session.setAttribute("page1",""+ans);
+}
+%>
+<a href=*http://localhost:8080/jspexamples/page2.jsp">next page</a>  
+
+
+
+
+
+
+<%@ page language="java" session="true"%>
+<html>
+<body>
+<form method="post" action="Page2.jsp">
+  Book:price:55
+  Enter qty:<input type="text" name"t1"><br>
+  Notebook:price:150
+  Enter qty:<input type="text" name="t2"><br>
+  <input type="submit" value="ok">
+</form>
+</body>
+</html>
+<%
+String s1=request.getParameter("t1");  
+String s2=request.getParameter("t2"); 
+if(s1!=null&&s2!=null)
+{
+  int q1=Integer.parseInt(s1);
+  int q2=Integer.parseInt(s2);
+  int ans=q1*55+q2*150;
+  out.println("Page 2 Total="+ans);
+session.setAttribute("page2",""+ans);
+}
+%>
+<a href=*http://localhost:8080/jspexamples/page3.jsp">next page</a>
+
+
+
+
+
+<%@ page language="java" session="true"%>
+
+<%
+String val1=(String)session.getAttribute("page1");
+String val2=(String)session.getAttribute("page2");
+
+int t1=Integer.parseInt(val1);
+int t2=Integer.parseInt(val2);
+int ans=t1+t2;
+out.println("Total Bill="+ans);
+%>
